@@ -1,13 +1,13 @@
 {
-  "name": "payload-table-field",
-  "version": "1.0.3",
-  "description": "A table field (React Table) for Payload",
+  "name": "payload-label-popover",
+  "version": "1.0.0",
+  "description": "A plugin to add descriptive popovers to field labels in Payload.",
   "main": "src/index.ts",
   "peerDependencies": {
     "payload": "^2.0.0"
   },
   "publishConfig": {
-    "registry": "https://github.com/notchris/payload-table-field.git"
+    "registry": "https://github.com/notchris/payload-label-popover.git"
   },
   "devDependencies": {
     "@payloadcms/eslint-config": "^0.0.1",
@@ -33,23 +33,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/notchris/payload-table-field.git"
+    "url": "git+ssh://git@github.com/notchris/payload-label-popover.git"
   },
   "keywords": [
     "payload",
-    "react-table",
-    "payload-plugin",
-    "field"
+    "react-tiny-popover",
+    "payload-plugin"
   ],
   "author": "notchris <mail@chrismcgrane.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/notchris/payload-table-field/issues"
+    "url": "https://github.com/notchris/payload-label-popover/issues"
   },
-  "homepage": "https://github.com/notchris/payload-table-field#readme",
+  "homepage": "https://github.com/notchris/payload-label-popover#readme",
   "dependencies": {
-    "@tanstack/match-sorter-utils": "^8.11.8",
-    "@tanstack/react-table": "^8.13.2"
+    "react-tiny-popover": "^8.0.4"
   }
-  
 }

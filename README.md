@@ -1,13 +1,5 @@
-# Payload Table Field
-#### Adds a table field (using [React Table](https://tanstack.com/table/latest)) to [Payload](https://payloadcms.com/).
-
-### Features:
-
-- Display / Edit data using [React Table](https://tanstack.com/table/latest)
-- Pagination
-- Sorting
-- Row Selection
-
+# Payload Label Popover Plugin
+#### Adds a descriptive popover to [Payload](https://payloadcms.com/) field labels (using [React Tiny Popover](https://github.com/alexkatz/react-tiny-popover)).
 
 ![image](https://github.com/notchris/payload-table-field/blob/main/example.png?raw=true)
 
@@ -15,22 +7,25 @@
 ## Installation
 
 ```bash
-  yarn add payload-table-field
+  yarn add payload-label-popover
   #OR
-  npm i payload-table-field
+  npm i payload-label-popover
 ```
 
 ## Basic Usage
 
-Import the field and then use it in your payload collection fields array.
+Import the plugin and add it to your payload configuration file.
 
 ```ts
-// import plugin
-import { CollectionConfig, Field } from 'payload/types'
-import { tableField } from 'payload-table-field'
+// Add the plugin to the "plugins" array in your payload config
+{
+  // ... Rest of payload config
+  plugins: [labelPopoverPlugin({})]
+}
+```
 
-import mockData from '../mocks/mockData'
-
+```ts
+// Enable a popover on a field using the `custom` object
 const Examples: CollectionConfig = {
   slug: 'examples',
   admin: {
@@ -40,36 +35,17 @@ const Examples: CollectionConfig = {
     {
       type: 'text',
       name: 'title',
+      label: 'Hello World',
+      custom: {
+        labelPopover: 'This is a test to see if this popover will work and wrap correctly.',
+        showLabelPopover: true,
+      },
     },
-    tableField(
-      {
-        name: 'table_example',
-        label: 'Example Table - Movies',
-        defaultValue: mockData,
-      },
-      {
-        pagination: true, // Enable pagination?
-        paginationPageSize: 10, // Default pagination page size
-        paginationPageSizes: [5, 10, 25, 50, 100], // Available pagination page sizes
-        editable: false, // Allow cells to be edited?
-        rowSelection: true, // Enable row selection
-        columns: [
-          {
-            key: 'id',
-            name: 'ID',
-            enableSorting: true // Allow this column to be sorted
-          },
-          { key: 'title', name: 'Title' },
-          { key: 'year', name: 'Year' },
-        ],
-      },
-    ) as Field,
   ],
 }
-
 export default Examples
 ```
 
 ### Note
 
-While this plugin is still in development, the basic feature set of React Table has been implemented.
+Popovers currently support text content, but if there is a need I can add the ability to use a custom component. 
