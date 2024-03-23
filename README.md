@@ -1,7 +1,7 @@
 # Payload Label Popover Plugin
 #### Adds a descriptive popover to [Payload](https://payloadcms.com/) field labels (using [React Tiny Popover](https://github.com/alexkatz/react-tiny-popover)).
 
-![image](https://github.com/notchris/payload-table-field/blob/main/example.png?raw=true)
+![image](https://github.com/notchris/payload-label-popover/blob/main/example.png?raw=true)
 
 
 ## Installation
