@@ -2,6 +2,38 @@ import type { Plugin } from 'payload/config'
 
 import { onInitExtension } from './onInitExtension'
 import { LabelPopover } from './LabelPopover'
+import { CollectionConfig, Field } from 'payload/dist/exports/types'
+
+const addCustomLabelToFields = (collection: CollectionConfig) => {
+  const traverseFields = (fields: Field[]) => {
+    fields.forEach(field => {
+      field.admin = field.admin ?? {}
+      field.admin.components = {
+        ...(field.admin?.components ?? {}),
+        //@ts-ignore
+        Label: props =>
+          LabelPopover({
+            ...props,
+            showLabelPopover: field.custom?.showLabelPopover,
+            labelPopover: field.custom?.labelPopover,
+          }),
+      }
+      if ('fields' in field) {
+        traverseFields(field.fields)
+      }
+
+      if ('blocks' in field) {
+        field.blocks.forEach(block => traverseFields(block.fields))
+      }
+
+      if ('tabs' in field) {
+        field.tabs.forEach(tab => traverseFields(tab.fields))
+      }
+    })
+  }
+
+  traverseFields(collection.fields)
+}
 
 export const labelPopoverPlugin =
   (pluginOptions: {}): Plugin =>
@@ -19,21 +51,7 @@ export const labelPopoverPlugin =
 
     if (config.collections !== undefined) {
       config.collections.forEach(collection => {
-        collection.fields.forEach(field => {
-          if (!field.admin) field.admin = {}
-          field.admin.components = {
-            ...(field.admin.components || {}),
-            // Ignore the Label prop because the Payload type seems to be incorrect
-            //@ts-ignore
-            Label: props => {
-              return LabelPopover({
-                ...props,
-                showLabelPopover: field.custom?.showLabelPopover,
-                labelPopover: field.custom?.labelPopover,
-              })
-            },
-          }
-        })
+        addCustomLabelToFields(collection)
       })
     }
 

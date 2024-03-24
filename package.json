@@ -1,13 +1,13 @@
 {
   "name": "payload-label-popover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A plugin to add descriptive popovers to field labels in Payload.",
   "main": "src/index.ts",
   "peerDependencies": {
     "payload": "^2.0.0"
   },
   "publishConfig": {
-    "registry": "https://github.com/notchris/payload-label-popover.git"
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@payloadcms/eslint-config": "^0.0.1",
