@@ -46,6 +46,34 @@ const Examples: CollectionConfig = {
 export default Examples
 ```
 
-### Note
+### Custom Component for Popover Content
 
-Popovers currently support text content, but if there is a need I can add the ability to use a custom component. 
+You can also use a custom component to render content inside of the popover.
+
+```tsx
+// CustomPopoverContent.tsx
+import React from 'react'
+
+type Props = {
+  data: string
+}
+
+export const CustomPopoverContent: React.FC<Props> = props => {
+  const { data } = props
+  return <div style={{ color: 'yellow' }}>{data}</div>
+}
+```
+
+Then import and pass the component to the 'labelPopover' property in your field config.
+
+```ts
+      custom: {
+        labelPopover: LabelContent({ data: 'HELLO WORLD!!!' }),
+        showLabelPopover: true,
+      }
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
